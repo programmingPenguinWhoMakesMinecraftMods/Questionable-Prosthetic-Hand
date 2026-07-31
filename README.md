@@ -32,9 +32,36 @@ Now, we want it to be quite affordable, so common off the shelf components are p
 
 In total, it cost me roughly **2229BDT** (or in more familiar terms, 18.11USD, 15.69EUR, 25.85AUD, 25.40CAD, 13.43GBP)
 
-# Setting up the voltage divider
- (5V Power) ─── [ LDR 1/2/3/4/5 ] ───┬─── [ 10kΩ Resistor ] ─── (GND)
-                                     │
-                               [ JUNCTION ]
-                                     │
-                         (Arduino Pin A0/A1/A2/A3/A4)
+# Setting up the voltage divider and the detection segment
+       (5V Power (Positive)) ─── [ LDR 1/2/3/4/5 ] ───┬─── [ 10kΩ Resistor ] ─── (GND (Negative))
+                                           │
+                                     [ JUNCTION ]
+                                           │
+                               (Arduino Pin A0/A1/A2/A3/A4)
+
+This is quite easy to set up on the breadboard, as shown below
+<img width="3274" height="2528" alt="20260801_041912" src="https://github.com/user-attachments/assets/0f13f313-12da-4583-b713-fa036092a713" />
+
+This setup is repeated for the other LDRs, for each finger
+Now, we want to also set up the LED circuit as well
+
+      (5V Power (Positive)) ─── [ 68Ω Resistor] ────── [ LED ] ─── (GND (Negative))
+
+This is again, quite easy to set up on the breadboard, as shown below
+<img width="3000" height="3184" alt="20260801_042815" src="https://github.com/user-attachments/assets/12b7ba1e-4fb2-4eaa-86ce-2bcc163203c4" />
+
+This setup is repeated for the other LEDs, for each finger 
+
+# Setting up the power and the actuation segment
+Each SG90 Motor has 3 pins 
+- The orange is for PWM control: this goes to the PWM pins on the Arduino
+- The red is for Power (Positive): this goes to the positive power rail on the breadboard
+- The brown/black is for Ground (Negative): this goes to the negative power rail on the breadboard
+Our battery pack has two terminals, a positive and a negative. They each go to their respective rails on the breadboard. It is important to note that the battery pack's positive rail MUST be kept separate from the Arduino's positive rail, because they are of different voltages. However, the negative rails MUST be kept on the same rail for the battery pack and the Arduino, otherwise PWM control will not work properly as a common Ground is necessary.
+
+The set up on the breadboard is shown below
+<img width="3000" height="2382" alt="20260801_043717" src="https://github.com/user-attachments/assets/0eaed6df-ff10-4912-a3d3-9f3ee4ae0b04" />
+
+This is then repeated for each motor, for each finger
+
+# Complete Circuit
