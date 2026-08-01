@@ -60,8 +60,30 @@ Each SG90 Motor has 3 pins
 Our battery pack has two terminals, a positive and a negative. They each go to their respective rails on the breadboard. It is important to note that the battery pack's positive rail MUST be kept separate from the Arduino's positive rail, because they are of different voltages. However, the negative rails MUST be kept on the same rail for the battery pack and the Arduino, otherwise PWM control will not work properly as a common Ground is necessary.
 
 The set up on the breadboard is shown below
-<img width="3000" height="2382" alt="20260801_043717" src="https://github.com/user-attachments/assets/0eaed6df-ff10-4912-a3d3-9f3ee4ae0b04" />
+<img width="3000" height="2382" alt="48489" src="https://github.com/user-attachments/assets/0d9c6d83-5952-4536-abe0-e5bfc17cb9c1" />
+
 
 This is then repeated for each motor, for each finger
 
 # Complete Circuit
+After completing the circuit, it looks like this. Very chaotic, I know. Note that the LDRs have already been mounted to the housing
+<img width="2714" height="1174" alt="48520" src="https://github.com/user-attachments/assets/9af5475f-752a-4a1f-8de3-cdd9bdb6301a" />
+
+# Housing
+The housing is the tough part now. I've decided to make it modular, so if something goes wrong a module can just be replaced. Thus, it consists of individual modules for each digit, and a cardboard base plate for the palm, which connects to each module. To create each module, first a base strip of cardboard is cut out in the size of the user's hand - simply tracing it is sufficient. Then, using thin cardboard strips, a strap is made by wrapping it around the base strip. Then the components are mounted onto each finger, using hot glue. Special care must be taken to not cover the LDR surface in hot glue. Then, a string is glued onto the tip of each module, and the other end is tied to a servo motor. 
+<img width="3000" height="2112" alt="48481" src="https://github.com/user-attachments/assets/98e15ac4-5066-4d96-b7a0-8ec520a39434" />
+<img width="3000" height="1186" alt="48479" src="https://github.com/user-attachments/assets/aeb2ab40-d494-453f-89e0-3c3109ffe3f6" />
+
+These images show samples of how the modules can be made.
+
+# Putting it all together
+A simple algorithm to make this idea come to reality has been included. It relies on arrays and constant checking through loops, so it does use a lot of processing power. Future developments could focus on implementing an interrupt based system which frees up processing power for additional features beyond the prosthetic aid aspect of this device 
+
+# Limitations and Future Improvements
+This project only serves as a cheap proof of concept of this idea, and others are welcome to try to recreate it and iterate upon it. 
+
+Currently, this system is very prone to false-positives, meaning the fingers contract when the user doesn't want it, which is a result of the sensor being exposed to ambient light, which can vary considerably. This can be remedied by applying different profiles for different scenarios, but a better solution would be to fully enclose the finger in the housing. The cardboard material is not ideal as well, and the movement can feel quite 'stiff' due to it. 
+
+Future improvements include a fully enclosed 3D Printed Housing (Roughly 1000BDT, in works), and custom PCBs with slimmer wiring, as the jumper cables are quite bulky. Furthermore, a shift to the ESP32 Platform, with appropriate voltage regulars can enable Bluetooth communication, which can enable this prosthetic to also work as a mouse and keyboard, or a joystick! Improvements like this can also push this design to have appeal outside of being a prosthetic aid, and could push it to be a novelty Human Interface Device (HID) for computers. 
+
+Anyways, enough of my rambling. This was a fun little project that I did, and it'd be wonderful to see people take inspiration or iterate upon it to create a better device. It's been amazing using open-source projects all this time, so it's nice to create an open-source project of my own that everyone can use... though given the quality of this project I'm not sure you'd want to. Thanks for reading, stranger!
